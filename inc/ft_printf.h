@@ -30,13 +30,20 @@ typedef struct          s_pf_enf
     int                 i;
     const char          *format;
     int                 flag[13];
-    va_list             ap;
+    va_list             *ap;
 }                       t_pf_env;
+
+typedef struct          s_pf_handel
+{
+    char                c;
+    void                (*fnc)();
+}                       t_pf_handel;
+
 
 /*
 **                      pf_catch.c
 */
-void                    pf_catch(t_pf_env *env);
+void                    pf_catch(t_pf_env *env, va_list *ap);
 /*
 **                      pf_check.c
 */
@@ -45,9 +52,11 @@ int                     pf_check(t_pf_env *env);
 /*
 **                      pf_set.c
 */
+void                    pf_set_handel(t_pf_handel *handel);
 void                    pf_reset_flag(t_pf_env *env);
 
-
+void       pf_handeler_c(t_pf_env *env, va_list *ap);
+void       pf_handeler_s(t_pf_env *env, va_list *ap);
 
 
 #endif

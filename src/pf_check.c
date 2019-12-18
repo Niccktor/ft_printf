@@ -49,6 +49,7 @@ static void     pf_focus(t_pf_env *env)
     start = -1;
     if (env->format[env->i] == '.')
     {
+        env->i++;
         while (ft_isdigit(env->format[env->i]))
         {
             if (start == -1)
@@ -61,6 +62,8 @@ static void     pf_focus(t_pf_env *env)
             env->flag[9] = ft_atoi((const char*)str);
             free(str);
         }
+        else
+            env->flag[9] = 0;
     }
 }
 
