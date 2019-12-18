@@ -28,7 +28,6 @@ void    pf_print(t_pf_env *env, ssize_t start)
 
 int     ft_printf(const char *format, ...)
 {
-    //ssize_t     start;
     va_list     ap;
     t_pf_env    env;
     
@@ -36,18 +35,12 @@ int     ft_printf(const char *format, ...)
     env.ret = 0;
 	va_start(ap, format);
     env.i = 0;
-   // start = 0;
     while (env.format[env.i] != '\0')
     {
         if (env.format[env.i] == '%')
         {
-        //    pf_print(&env, start);
             env.i++;
             pf_catch(&env, &ap);
-          //  ft_putchar('\n');
-            //start = env.i;
-            //ft_putnbr(start);
-            //ft_putchar('\n');
         }
         else
         {
@@ -56,12 +49,11 @@ int     ft_printf(const char *format, ...)
             env.i++;
         }
     }
-    //pf_print(&env, start);
     va_end(ap);
     return (env.ret);
 }
 
-#define f "bonjour %s %s %s %c %p\n"
+#define f "bonjour %s %s %s %c %p %% %+-1.0ld]\n"
 int     main(void)
 {
 
@@ -70,9 +62,10 @@ int     main(void)
     char *str2 = "Bonjour jrmr";
     char *str3 = "Bonjour thomas";
     char c = 't';
-    int i = ft_printf(f, str, str2, str3, c, &c);
+    long int j = 50;
+    int i = ft_printf(f, str, str2, str3, c, &c, j);
     //int i = 0;
-    printf("ret = %d len = %d\n",i, printf(f, str, str2, str3, c, &c));
-    //printf("sizeof(void *) = %ld sizeof(unsigned long long) = %ld\n",sizeof(void *), sizeof(__uintmax_t));
+    printf("ret = %d len = %d\n",i, printf(f, str, str2, str3, c, &c, j));
+    //printf("[%+-7.5ld]\n",j);
     return (0);
 }

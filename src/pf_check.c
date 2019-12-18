@@ -3,7 +3,8 @@
 static void     pf_attribut(t_pf_env *env)
 {
     while (env->format[env->i] == '#' || env->format[env->i] == '0'
-        || env->format[env->i] == '-' || env->format[env->i] == '+')
+        || env->format[env->i] == '-' || env->format[env->i] == '+'
+        || env->format[env->i] == ' ')
     {
         if (env->format[env->i] == '#')
             env->flag[5] = 1;
@@ -13,6 +14,8 @@ static void     pf_attribut(t_pf_env *env)
             env->flag[7] = 1;
         if (env->format[env->i] == '+')
             env->flag[8] = 1;
+        if (env->format[env->i] == ' ')
+            env->flag[11] = 1;
         env->i++;
     }
 

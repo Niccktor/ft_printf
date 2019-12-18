@@ -46,10 +46,8 @@ void                pf_handeler_p(t_pf_env *env, va_list *ap)
 
     nbr = (unsigned long long)va_arg(*ap, void *);
     str = pf_itoa_base(nbr, 16);
-    ft_putstr("0x\0");
-    env->ret += ft_strlen("0x\0");
-    ft_putstr(str);
-    env->ret += ft_strlen(str);
+    env->ret += write(1, "0x\0", ft_strlen("0x\0"));
+    env->ret += write(1, str, ft_strlen(str));
     free(str);
     env->i++;
 }

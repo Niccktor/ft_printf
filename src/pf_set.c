@@ -9,7 +9,7 @@ void    pf_set_handel(t_pf_handel *handel)
     handel[2].c = 'p';
     handel[2].fnc = &pf_handeler_p;
     handel[3].c = 'd';
-    //handel[3].fnc = &pf_handeler_d;
+    handel[3].fnc = &pf_handeler_d;
     handel[4].c = 'i';
     //handel[4].fnc = &pf_handeler_i;
     handel[5].c = 'o';
@@ -21,7 +21,7 @@ void    pf_set_handel(t_pf_handel *handel)
     handel[8].c = 'X';
     //handel[8].fnc = &pf_handeler_X;
     handel[9].c = '\0';
-    //handel[9].fnc = &pf_handeler_unknow;
+    handel[9].fnc = &pf_handeler_unknow;
 }
 
 void    pf_reset_flag(t_pf_env *env)

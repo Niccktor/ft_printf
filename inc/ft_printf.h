@@ -19,7 +19,7 @@
 /*
 **                      *flag 
 **                          modify      = | 0 = 'l' | 1 = 'll' | 2 = 'h' | 3 = 'hh' | 4 = 'L' |
-**                          Attribut    = | 5 = '#' | 6 = '0'  | 7 = '-' | 8 = '+'  |
+**                          Attribut    = | 5 = '#' | 6 = '0'  | 7 = '-' | 8 = '+'  | B = ' ' |
 **                          focus       = | 9 = foc |
 **                          width       = | A = wid |            
 */
@@ -58,5 +58,11 @@ void                    pf_reset_flag(t_pf_env *env);
 void       pf_handeler_c(t_pf_env *env, va_list *ap);
 void       pf_handeler_s(t_pf_env *env, va_list *ap);
 void       pf_handeler_p(t_pf_env *env, va_list *ap);
+void       pf_handeler_d(t_pf_env *env, va_list *ap);
+
+void       pf_handeler_unknow(t_pf_env *env, va_list *ap);
+
+char                *pf_itoa_base(unsigned long long nbr, int base);
+
 
 #endif
