@@ -7,7 +7,7 @@ void    pf_set_handel(t_pf_handel *handel)
     handel[1].c = 's';
     handel[1].fnc = &pf_handeler_s;
     handel[2].c = 'p';
-    //handel[2].fnc = &pf_handeler_p;
+    handel[2].fnc = &pf_handeler_p;
     handel[3].c = 'd';
     //handel[3].fnc = &pf_handeler_d;
     handel[4].c = 'i';

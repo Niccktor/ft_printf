@@ -57,6 +57,6 @@ void                    pf_reset_flag(t_pf_env *env);
 
 void       pf_handeler_c(t_pf_env *env, va_list *ap);
 void       pf_handeler_s(t_pf_env *env, va_list *ap);
-
+void       pf_handeler_p(t_pf_env *env, va_list *ap);
 
 #endif

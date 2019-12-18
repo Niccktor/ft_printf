@@ -22,7 +22,7 @@ OBJ_DIR = ./obj
 LIB_FT = ./libft
 FT_LNK = -L $(LIB_FT) -l ft
 
-SRC =  ft_printf.c pf_catch.c pf_check.c pf_set.c pf_handeler_c.c pf_handeler_s.c
+SRC =  ft_printf.c pf_catch.c pf_check.c pf_set.c pf_handeler_c.c pf_handeler_s.c pf_handeler_p.c
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 

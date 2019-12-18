@@ -61,15 +61,18 @@ int     ft_printf(const char *format, ...)
     return (env.ret);
 }
 
-#define f "bonjour %s \n"
+#define f "bonjour %s %s %s %c %p\n"
 int     main(void)
 {
-    int i;
+
 
     char *str = NULL;
-  /*  char *str2 = "Bonjour jrmr";
-    char *str3 = "Bonjour thomas";*/
-    i = ft_printf(f, str);
-    printf("ret = %d len = %d\n",i, printf(f, str));
+    char *str2 = "Bonjour jrmr";
+    char *str3 = "Bonjour thomas";
+    char c = 't';
+    int i = ft_printf(f, str, str2, str3, c, &c);
+    //int i = 0;
+    printf("ret = %d len = %d\n",i, printf(f, str, str2, str3, c, &c));
+    //printf("sizeof(void *) = %ld sizeof(unsigned long long) = %ld\n",sizeof(void *), sizeof(__uintmax_t));
     return (0);
 }
