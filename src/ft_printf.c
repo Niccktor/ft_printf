@@ -53,7 +53,7 @@ int     ft_printf(const char *format, ...)
     return (env.ret);
 }
 
-#define f "bonjour %s %s %s %c %p %% %+-1.0ld]\n"
+#define f "bonjour [%s] [%s] [%s] [%c] [%p] [%%] [% 1.0li]\n"
 int     main(void)
 {
 
