@@ -6,7 +6,7 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 12:25:33 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/24 02:04:38 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/01/24 03:57:28 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# define BUFF_SIZE 63
 
 typedef struct		s_pf_env
 {
+	int			fd;
 	int			ret;
 	int			i;
+	int			i_buff;
 	const char	*format;
+	char		buff[BUFF_SIZE];
 	int			flag[13];
 	va_list		*ap;
 }					t_pf_env;
@@ -68,4 +72,10 @@ void				pf_handeler_u(t_pf_env *env, va_list *ap);
 void				pf_handeler_x(t_pf_env *env, va_list *ap);
 void				pf_handeler_x_up(t_pf_env *env, va_list *ap);
 void				pf_handeler_unknow(t_pf_env *env);
+void				pf_flush(t_pf_env *env);
+void				pf_reset_buff(t_pf_env *env);
+void				pf_str_buff(t_pf_env *env, char *str);
+void				pf_nstr_buff(t_pf_env *env, char *str, int n);
+void				pf_char_buff(t_pf_env *env, char c);
+
 #endif

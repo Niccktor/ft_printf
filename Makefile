@@ -6,7 +6,7 @@
 #    By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 20:10:01 by tbeguin           #+#    #+#              #
-#    Updated: 2020/01/23 05:39:30 by tbeguin          ###   ########.fr        #
+#    Updated: 2020/01/24 03:22:32 by tbeguin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRC = lib/ft_atoi.c		\
 	 pf_handeler_u.c	\
 	 pf_handeler_x.c	\
 	 pf_handeler_xup.c	\
-	 pf_handeler_unknow.c	
+	 pf_handeler_unknow.c \
+	 pf_buff.c
+
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
