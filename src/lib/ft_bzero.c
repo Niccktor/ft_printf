@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_handeler_c.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/14 18:56:39 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/20 12:26:41 by tbeguin          ###   ########.fr       */
+/*   Created: 2018/11/09 16:52:49 by tbeguin           #+#    #+#             */
+/*   Updated: 2020/01/14 19:44:38 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "../../inc/ft_printf.h"
 
-void	pf_handeler_c(t_pf_env *env, va_list *ap)
+void	ft_bzero(void *s, size_t n)
 {
-	int len;
+	unsigned char *str;
 
-	len = env->flag[10] - 1;
-	while (len > 0 && env->flag[7] == 0)
-	{
-		env->ret += write(1, " ", 1);
-		len--;
-	}
-	env->ret += 1;
-	env->i += 1;
-	ft_putchar((char)va_arg(*ap, int));
-	while (len > 0 && env->flag[7] == 1)
-	{
-		env->ret += write(1, " ", 1);
-		len--;
-	}
+	str = s;
+	while (n--)
+		*str++ = '\0';
 }

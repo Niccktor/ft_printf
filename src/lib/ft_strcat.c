@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_handeler_c.c                                    :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/14 18:56:39 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/20 12:26:41 by tbeguin          ###   ########.fr       */
+/*   Created: 2020/01/23 05:00:24 by tbeguin           #+#    #+#             */
+/*   Updated: 2020/01/23 05:00:43 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
-
-void	pf_handeler_c(t_pf_env *env, va_list *ap)
+char	*ft_strcat(char *dest, const char *src)
 {
-	int len;
+	int i;
+	int j;
 
-	len = env->flag[10] - 1;
-	while (len > 0 && env->flag[7] == 0)
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0')
 	{
-		env->ret += write(1, " ", 1);
-		len--;
+		dest[i] = src[j];
+		i++;
+		j++;
 	}
-	env->ret += 1;
-	env->i += 1;
-	ft_putchar((char)va_arg(*ap, int));
-	while (len > 0 && env->flag[7] == 1)
-	{
-		env->ret += write(1, " ", 1);
-		len--;
-	}
+	dest[i] = '\0';
+	return (dest);
 }

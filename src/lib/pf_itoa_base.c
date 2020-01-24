@@ -6,43 +6,45 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:01:59 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/23 07:08:17 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/01/24 02:13:35 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "../../inc/ft_printf.h"
 
-static void				pf_print_space(t_pf_env *env, int len,\
-							unsigned long long nbr)
+ssize_t					itoa_len(unsigned long long nbr, int base)
 {
-	while (len < env->flag[10] && !(nbr == 0 && env->flag[9] <= -10))
+	ssize_t				i;
+
+	i = 0;
+	while (nbr)
 	{
-		env->ret += write(1, " ", 1);
-		len++;
+		nbr /= base;
+		i++;
 	}
+	return (i);
 }
 
-void					pf_handeler_p(t_pf_env *env, va_list *ap)
+char					*pf_itoa_base(unsigned long long nbr, int base)
 {
 	char				*str;
-	unsigned long long	nbr;
 	int					len;
+	int					i;
 
-	nbr = (unsigned long long)va_arg(*ap, void *);
-	str = pf_itoa_base(nbr, 16);
-	len = ft_strlen(str) + 2;
-	if (env->flag[7] == 0)
-		pf_print_space(env, len, nbr);
-	env->ret += write(1, "0x", 2);
-	while (env->flag[9] - len + 2 > 0)
+	if (nbr == 0)
+		return (ft_strdup("0\0"));
+	len = itoa_len(nbr, base);
+	if ((str = (char *)ft_memalloc(sizeof(char) * len + 1)) == NULL)
+		return (ft_strdup("0x0\0"));
+	i = 0;
+	while (nbr)
 	{
-		env->ret += write(1, "0", 1);
-		len++;
+		if (nbr % base > 9)
+			str[len - i - 1] = 'a' + nbr % base - 10;
+		else
+			str[len - i - 1] = '0' + nbr % base;
+		nbr /= base;
+		i++;
 	}
-	if (!(nbr == 0 && env->flag[9] <= -10))
-		env->ret += write(1, str, ft_strlen(str));
-	if (env->flag[7] == 1)
-		pf_print_space(env, len, nbr);
-	free(str);
-	env->i++;
+	return (str);
 }

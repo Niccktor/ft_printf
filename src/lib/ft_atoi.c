@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_handeler_c.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/14 18:56:39 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/20 12:26:41 by tbeguin          ###   ########.fr       */
+/*   Created: 2018/11/09 15:44:32 by tbeguin           #+#    #+#             */
+/*   Updated: 2020/01/14 19:39:49 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_printf.h"
+#include "../../inc/ft_printf.h"
 
-void	pf_handeler_c(t_pf_env *env, va_list *ap)
+int		ft_atoi(const char *str)
 {
-	int len;
+	int nb;
+	int sign;
 
-	len = env->flag[10] - 1;
-	while (len > 0 && env->flag[7] == 0)
+	while (*str == ' ' || *str == '\n' || *str == '\f' || *str == '\r' ||
+			*str == '\t' || *str == '\v')
+		str++;
+	sign = 1;
+	if (*str == '-' || *str == '+')
 	{
-		env->ret += write(1, " ", 1);
-		len--;
+		if (*str == '-')
+			sign = -1;
+		str++;
 	}
-	env->ret += 1;
-	env->i += 1;
-	ft_putchar((char)va_arg(*ap, int));
-	while (len > 0 && env->flag[7] == 1)
+	nb = 0;
+	while (ft_isdigit((int)*str))
 	{
-		env->ret += write(1, " ", 1);
-		len--;
+		nb = nb * 10 + *str - '0';
+		str++;
 	}
+	return (nb * sign);
 }
