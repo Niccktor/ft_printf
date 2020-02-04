@@ -6,7 +6,7 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 18:56:39 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/20 12:26:41 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/02/04 01:22:35 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ void	pf_handeler_c(t_pf_env *env, va_list *ap)
 	len = env->flag[10] - 1;
 	while (len > 0 && env->flag[7] == 0)
 	{
-		env->ret += write(1, " ", 1);
+		if (env->flag[6] == 1)
+			pf_char_buff(env, '0');
+		else
+			pf_char_buff(env, ' ');
 		len--;
 	}
-	env->ret += 1;
 	env->i += 1;
-	ft_putchar((char)va_arg(*ap, int));
+	pf_char_buff(env, (char)va_arg(*ap, int));
 	while (len > 0 && env->flag[7] == 1)
 	{
-		env->ret += write(1, " ", 1);
+		pf_char_buff(env, ' ');
 		len--;
 	}
 }

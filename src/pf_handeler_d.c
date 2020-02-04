@@ -6,7 +6,7 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 18:57:26 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/24 02:34:02 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/01/24 02:41:17 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void				pf_flag_set(t_pf_env *env, int sign)
 		env->flag[6] = 0;
 	if (env->flag[11] == 1 && env->flag[8] == 1)
 		env->flag[11] = 0;
-
 	if (sign == 1)
 	{
 		env->flag[11] = 0;

@@ -6,7 +6,7 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:04:47 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/20 18:12:26 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/01/24 04:29:11 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,23 @@ static void	pf_print_str(t_pf_env *env, char *str)
 	else if (env->flag[9] == -10)
 		width = env->flag[10];
 	while (env->flag[7] == 0 && --width >= 0)
-		env->ret += write(1, " ", 1);
+	{
+		if (env->flag[11] == 0 && env->flag[6] == 1)
+			pf_char_buff(env, '0');
+		else
+			pf_char_buff(env, ' ');
+	}
 	if (env->flag[9] == -1)
-		env->ret += write(1, str, ft_strlen(str));
+		pf_str_buff(env, str);
 	else if (env->flag[9] > 0)
 	{
 		if ((int)ft_strlen(str) > env->flag[9] && env->flag[9] > 0)
-			env->ret += write(1, str, env->flag[9]);
+			pf_nstr_buff(env, str, env->flag[9]);
 		else
-			env->ret += write(1, str, ft_strlen(str));
+			pf_str_buff(env, str);
 	}
 	while (env->flag[7] == 1 && --width >= 0)
-		env->ret += write(1, " ", 1);
+		pf_char_buff(env, ' ');
 }
 
 void		pf_handeler_s(t_pf_env *env, va_list *ap)

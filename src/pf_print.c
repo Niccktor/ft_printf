@@ -6,7 +6,7 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 19:05:40 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/24 02:00:48 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/01/24 03:57:39 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void		pf_print_sign(t_pf_env *env, int sign)
 {
 	if (sign == 1)
-		env->ret += write(1, "-", 1);
+		pf_char_buff(env, '-');
 	else if (env->flag[8] == 1)
-		env->ret += write(1, "+", 1);
+		pf_char_buff(env, '+');
 	else if (env->flag[11] == 1)
-		env->ret += write(1, " ", 1);
+		pf_char_buff(env, ' ');
 	else if (env->flag[5] == 1 && env->format[env->i] == 'x')
-		env->ret += write(1, "0x", 2);
+		pf_str_buff(env, "0x");
 	else if (env->flag[5] == 1 && env->format[env->i] == 'X')
-		env->ret += write(1, "0X", 2);
+		pf_str_buff(env, "0X");
 	else if (env->flag[5] >= 1 && env->format[env->i] == 'o')
-		env->ret += write(1, "0", 1);
+		pf_char_buff(env, '0');
 }
 
 static void		pf_print_focus(t_pf_env *env, char *str, int sign, int len)
@@ -38,17 +38,17 @@ static void		pf_print_focus(t_pf_env *env, char *str, int sign, int len)
 	pf_print_sign(env, sign);
 	while (focus > 0)
 	{
-		env->ret += write(1, "0", 1);
+		pf_char_buff(env, '0');
 		focus--;
 		width--;
 	}
-	env->ret += write(1, str, ft_strlen(str));
+	pf_str_buff(env, str);
 	while (width > 0)
 	{
 		if (env->flag[6] == 1)
-			env->ret += write(1, "0", 1);
+			pf_char_buff(env, '0');
 		else
-			env->ret += write(1, " ", 1);
+			pf_char_buff(env, ' ');
 		width--;
 	}
 }
@@ -67,19 +67,19 @@ static void		pf_print_width(t_pf_env *env, char *str, int sign, int len)
 	while (width > 0)
 	{
 		if (env->flag[6] == 1 && focus < 0)
-			env->ret += write(1, "0", 1);
+			pf_char_buff(env, '0');
 		else
-			env->ret += write(1, " ", 1);
+			pf_char_buff(env, ' ');
 		width--;
 	}
 	if (env->flag[6] == 0)
 		pf_print_sign(env, sign);
 	while (focus > 0)
 	{
-		env->ret += write(1, "0", 1);
+		pf_char_buff(env, '0');
 		focus--;
 	}
-	env->ret += write(1, str, ft_strlen(str));
+	pf_str_buff(env, str);
 }
 
 void			pf_print_dx(char *str, int sign, t_pf_env *env)

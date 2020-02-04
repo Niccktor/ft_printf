@@ -6,7 +6,7 @@
 /*   By: tbeguin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 19:05:41 by tbeguin           #+#    #+#             */
-/*   Updated: 2020/01/20 18:25:22 by tbeguin          ###   ########.fr       */
+/*   Updated: 2020/01/24 04:00:08 by tbeguin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void			pf_handeler_unknow(t_pf_env *env)
 	{
 		len++;
 		if (env->flag[6] == 1)
-			env->ret += write(1, "0", 1);
+			pf_char_buff(env, '0');
 		else
-			env->ret += write(1, " ", 1);
+			pf_char_buff(env, ' ');
 	}
-	env->ret += write(1, "%", 1);
+	pf_char_buff(env, '%');
 	while (env->flag[10] > len && env->flag[7] == 1)
 	{
 		len++;
-		env->ret += write(1, " ", 1);
+		pf_char_buff(env, ' ');
 	}
 	env->i++;
 }
